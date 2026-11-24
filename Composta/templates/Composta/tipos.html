@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tipos de Composta y Calculadora | Proyecto PAEC</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-success shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="/">EcoComposta PAEC</a>
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link" href="/">Inicio</a>
+                <a class="nav-link" href="/pasos/">Cómo Hacerla</a>
+                <a class="nav-link active fw-bold" href="/tipos/">Tipos y Calculadora</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container my-5">
+        <h1 class="fw-bold text-success text-center mb-4">Tipos de Compostaje</h1>
+        <div class="row g-4 mb-5">
+            <div class="col-md-4">
+                <div class="card border-0 shadow-sm h-100 p-4">
+                    <h5 class="fw-bold text-success">Composta Tradicional</h5>
+                    <p class="small text-secondary mb-0">Se realiza en pilas o contenedores ventilados alternando materia seca y húmeda. Ideal para patios y jardines escolares.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card border-0 shadow-sm h-100 p-4">
+                    <h5 class="fw-bold text-success">Lombricomposta</h5>
+                    <p class="small text-secondary mb-0">Utiliza lombrices rojas californianas que aceleran la descomposición y producen humus líquido y sólido de altísima calidad.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card border-0 shadow-sm h-100 p-4">
+                    <h5 class="fw-bold text-success">Composta Bokashi</h5>
+                    <p class="small text-secondary mb-0">Proceso de fermentación anaeróbica rápida (2 a 3 semanas) usando salvado inoculado con microorganismos benéficos.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Calculadora interactiva -->
+        <div class="card border-success shadow-sm p-4 mx-auto" style="max-width: 600px;">
+            <h4 class="fw-bold text-success mb-3">Calculadora de Impacto Ecológico</h4>
+            <p class="small text-muted">Ingresa cuántos kilos de residuos orgánicos generas a la semana para calcular cuánto abono puedes producir al mes:</p>
+            <div class="input-group mb-3">
+                <input type="number" id="kilosInput" class="form-control" placeholder="Ej. 5" min="1">
+                <button class="btn btn-success fw-bold" onclick="calcularComposta()">Calcular</button>
+            </div>
+            <div id="resultado" class="alert alert-success d-none mb-0 small"></div>
+        </div>
+    </main>
+
+    <script>
+        function calcularComposta() {
+            const kilos = parseFloat(document.getElementById('kilosInput').value);
+            const caja = document.getElementById('resultado');
+            if (!kilos || kilos <= 0) {
+                alert('Ingresa una cantidad válida de kilogramos.');
+                return;
+            }
+            const alMes = kilos * 4;
+            const abonoFinal = (alMes * 0.4).toFixed(1);
+            caja.innerHTML = `Al mes evitarías <strong>${alMes} kg</strong> de basura en rellenos sanitarios y obtendrías aproximadamente <strong>${abonoFinal} kg de abono orgánico fértil</strong>.`;
+            caja.classList.remove('d-none');
+        }
+    </script>
+</body>
+</html>
